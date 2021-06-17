@@ -5,33 +5,46 @@ public class NetflixMain {
     private static Netflix netflix;
 
 
+
     public static void main(String[] args) {
 
-        Episode fr1  = new Episode("Episode 1", "Episode 1 of Friends", new Date(14,7,2000));
-        Episode fr2 = new Episode("Episode 2", "Episode 2 of Friends", new Date(15,7,2000));
-        Episode fr3 = new Episode("Episode 3", "Episode 3 of Friends", new Date(16,7,2000));
-        Episode [] friendsEpisodes = {fr1 , fr2 ,fr3};
-        Series friends = new Series("Friends" , friendsEpisodes);
 
-        Episode pb1  = new Episode("Episode 1", "Episode 1 of Peaky Blinders", new Date(14,7,2000));
-        Episode pb2 = new Episode("Episode 2", "Episode 2 of Peaky Blinders", new Date(15,7,2000));
-        Episode pb3 = new Episode("Episode 3", "Episode 3 of Peaky Blinders", new Date(16,7,2000));
-        Episode [] peakyBlindersEpisodes = {pb1 , pb2 ,pb3};
-        Series thePeakyBlinders = new Series("The Peaky Blinders" , peakyBlindersEpisodes);
 
-        Episode br1  = new Episode("Episode 1", "Episode 1 of Breaking Bad", new Date(14,7,2000));
-        Episode br2 = new Episode("Episode 2", "Episode 2 of Breaking Bad", new Date(15,7,2000));
-        Episode br3 = new Episode("Episode 3", "Episode 3 of Breaking Bad", new Date(16,7,2000));
-        Episode [] breakingBadEpisodes = {br1 , br2 ,br3};
-        Series breakingBad = new Series("Friends" , breakingBadEpisodes);
+            Episode na1 = new Episode("Episode 1", "Episode 1 of Naruto", new Date(19, 10, 2005));
+            Episode na2 = new Episode("Episode 2", "Episode 2 of Naruto", new Date(26, 10, 2005));
+            Episode na3 = new Episode("Episode 3", "Episode 3 of Naruto", new Date(3, 11, 2005));
+            Episode[] narutoEpisodes = {na1, na2, na3};
+            Series Naruto = new Series("Naruto ", narutoEpisodes);
 
-        Account acc1 = new Account("Play45" , "BS1999",new Date(1,12,2021), new Date(1,12,2022));
-        Account acc2 = new Account("Maximus12" , "mfg1880",new Date(1,12,2021), new Date(1,12,2022));
-        Account acc3 = new Account("Liorius94" , "lr158aa4",new Date(1,12,2021), new Date(1,12,2022));
 
-        netflix = new Netflix(new Series[]{friends});
-        netflix = new Netflix(new Series[]{thePeakyBlinders});
-        netflix = new Netflix(new Series[]{breakingBad});
+            Episode a1 = new Episode("Episode 1", "Episode 1 of Arrow", new Date(10, 10, 2007));
+            Episode a2 = new Episode("Episode 2", "Episode 2 of Arrow", new Date(17, 10, 2007));
+            Episode a3 = new Episode("Episode 3", "Episode 3 of Arrow", new Date(24, 10, 2007));
+            Episode[] arrowEpisodes = {a1, a2, a3};
+            Series Arrow = new Series("Arrow", arrowEpisodes);
+
+            Episode fr1 = new Episode("Episode 1", "Episode1 of  Friends  ", new Date(7, 7, 2000));
+            Episode fr2 = new Episode("Episode 2", "Episode 2 of  Friends", new Date(14, 7, 2000));
+            Episode fr3 = new Episode("Episode 3", "Episode 3 of  Friends", new Date(21, 7, 2000));
+            Episode[] friendEpisodes = {fr1, fr2, fr3};
+            Series Friends = new Series("Friends", friendEpisodes);
+
+
+            netflix = new Netflix(new Series[]{Naruto});
+            netflix = new Netflix(new Series[]{Arrow});
+            netflix = new Netflix(new Series[]{Friends});
+
+
+
+
+
+
+        Account acc1 = new Account("TheNerd" , "Bznga11",new Date(1,12,2021), new Date(1,12,2022));
+        Account acc2 = new Account("TheOne1" , "Ecanor11",new Date(7,12,2021), new Date(7,12,2022));
+        Account acc3 = new Account("LomMga" , "lr1994",new Date(15,9,2021), new Date(15,9,2022));
+        Account[] accounts = {acc1,acc2,acc3};
+
+
 
         netflix.addAccount(acc1);
         netflix.addAccount(acc2);
@@ -63,20 +76,26 @@ public class NetflixMain {
         } while (true);
 
 
+
+
         switch (userOption) {
+
 
             case Options.PRINT_ALL_SERIES:
                 System.out.println("The series are: \n"  );
-
+                netflix.printAllSeries();
                 break;
 
 
             case Options.PRINT_VIEWED_SERIES:
-
-
+                netflix.printAllSeries();
                 break;
 
-            case Options.PRINT_MENU_INFO:
+
+            case Options.PRINT_ACCOUNT_INFO:
+                for(int i = 0; i < accounts.length; i++)
+                    accounts[i].printAccountInfo();
+
 
                 break;
 
@@ -85,7 +104,7 @@ public class NetflixMain {
                 break;
 
             case Options.EXIT:
-
+                System.out.println("Exiting... see you soon !");
                 break;
 
 
@@ -96,6 +115,10 @@ public class NetflixMain {
 
         }
 
+    }
+
+    private static Netflix getNetflix() {
+        return netflix;
     }
 
     public static void showMainMenu() {
@@ -123,7 +146,7 @@ public class NetflixMain {
 
             System.out.println("Please insert your password:");
             String password = scanner.nextLine();
-            Account account = new Account(username, password, new Date(1, 12, 2021), new Date(1, 12, 2022));
+            Account account = new Account(username, password, new Date(10, 2, 2021), new Date(1, 12, 2022));
             netflix.addAccount(account);
 
 
@@ -133,18 +156,18 @@ public class NetflixMain {
         }
         if (option == 2) {
             String username;
-            boolean userNameExist;
+            boolean user_Name_Exist;
             do {
-                userNameExist = false;
-                System.out.println("Log in existing account:\nplease insert your username:");
+                user_Name_Exist = false;
+                System.out.println("Log in existing account :\n please insert your username:");
                 username = scanner.nextLine();
-            } while (userNameExist);
+            } while (user_Name_Exist);
 
 
             System.out.println("Please insert your password:");
             String password = scanner.nextLine();
 
-            Account account = new Account(username, password, new Date(1, 12, 2021), new Date(1, 12, 2022));
+            Account account = new Account(username, password, new Date(10, 02, 2021), new Date(10, 02, 2022));
             netflix.addAccount(account);
 
 

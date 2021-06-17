@@ -16,6 +16,23 @@ public class Netflix {
         lastIndex++;
     }
 
+    public void printAllSeries () {
+        for (Series allSeries : series) {
+            System.out.println(allSeries.getName());
+        }
+    }
+
+    public void chooseSeriesToWatch (String seriesName, Account account) {
+        Series s = null;
+        for (Series series : series) {
+            if (series.getName().equals(seriesName)) {
+                s = series;
+
+            }
+        }
+
+    }
+
     public Series[] getSeries() {
         return series;
     }

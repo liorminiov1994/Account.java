@@ -13,7 +13,7 @@ public class Account {
         Scanner scanner = new Scanner(System.in);
         this.password = password;
         while(!isStrongPassword(this.password)) {
-            System.out.println("Enter Strong Password (atleast 6 digits  one char , one alphabetic digit");
+            System.out.println("Enter Strong Password ( At least 6 digits  one char , one alphabetic digit");
             //scanner.nextLine();
             this.password = scanner.nextLine();
         }
@@ -32,6 +32,17 @@ public class Account {
        }
         return (dig_count > 0 && char_count > 0);
     }
+
+    public void printViewedSeries() {
+
+    }
+
+    public void printAccountInfo() {
+        System.out.println(this);
+    }
+
+
+
 
 
     public String getUser_name() {
@@ -64,5 +75,9 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String toString () {
+        return "User name: \n" +user_name + "\nCreation date: \n" +creation + "\nExpire date: \n" +expire;
     }
 }
